@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LoginService } from '../services/login.service';
 import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +16,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private loginService: LoginService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -28,7 +30,7 @@ export class LoginComponent implements OnInit {
   onSubmit() {
     this.submitted = true;
     if (this.loginForm.invalid) {
-      this.toastr.error('Please enter valid email and password.');
+      this.toastr.error('Please enter valid details.');
       return;
     }
 
@@ -39,13 +41,23 @@ export class LoginComponent implements OnInit {
 
     this.loginService.loginUser(user).subscribe(
       (response) => {
-        
+        const token = response.token;
+        localStorage.setItem('access_token', token);
+        this.router.navigate(['/next-page']);
       },
       (error) => {
         if (error.status === 401) {
-          this.toastr.error('Invalid email or password.');
+          this.toastr.error(error.error.message);
+        } if (error.status === 422) {
+          const errorMessages = error.error.errors;
+          const errors = Object.keys(errorMessages).map((key) => {
+            return errorMessages[key].join(', ');
+          });
+          errors.forEach(errorMessage => {
+            this.toastr.error(errorMessage);
+          });
         } else {
-          this.toastr.error('Login failed! Please check your credentials.');
+          this.toastr.error('Please enter valid details.');
         }
       }
     );
