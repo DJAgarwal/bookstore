@@ -43,7 +43,7 @@ export class LoginComponent implements OnInit {
       (response) => {
         const token = response.token;
         localStorage.setItem('access_token', token);
-        this.router.navigate(['/next-page']);
+        this.router.navigate(['/book-listing']);
       },
       (error) => {
         if (error.status === 401) {
