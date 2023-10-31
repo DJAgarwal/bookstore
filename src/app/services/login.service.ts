@@ -13,4 +13,7 @@ export class LoginService {
   loginUser(user: any) {
     return this.http.post<any>(this.apiUrl, user);
   }
+  isUserLoggedIn(): boolean {
+    return !!localStorage.getItem('access_token');
+  }
 }

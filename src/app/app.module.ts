@@ -9,6 +9,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AuthGuard } from './guards/auth.guard';
 import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
+import { DatePipe } from '@angular/common';
+import { MatPaginatorModule } from '@angular/material/paginator';
+
 import { LoginComponent } from './login/login.component';
 import { BookListingComponent } from './book/book-listing/book-listing.component';
 import { BookFormComponent } from './book/book-form/book-form.component';
@@ -30,10 +33,12 @@ import { NotFoundComponent } from './not-found/not-found.component';
     ToastrModule.forRoot(),
     BrowserAnimationsModule,
     ReactiveFormsModule,
-    RouterModule
+    RouterModule,
+    MatPaginatorModule
   ],
   providers: [
-    AuthGuard
+    AuthGuard,
+    DatePipe
   ],
   bootstrap: [AppComponent]
 })

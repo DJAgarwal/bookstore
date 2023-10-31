@@ -1,0 +1,57 @@
+<!-- <div class="mt-5"> -->
+    <div class="row justify-content-center">
+      <div class="col-md-10">
+        <div class="card">
+          <div class="card-header d-flex align-items-center">
+              <h5>Books List</h5>
+              <a *ngIf="userRole==='admin'" routerLink="/book-form" class="btn btn-primary ms-2">Create Book</a>
+              <a (click)="logout()" class="btn btn-primary ms-auto">Log out</a>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+            <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Title</th>
+                    <th>Author</th>
+                    <th>Genre</th>
+                    <th>Description</th>
+                    <th>ISBN</th>
+                    <th>Image</th>
+                    <th>Publication Date(dd/mm/yyyy)</th>
+                    <th>Publisher</th>
+                    <th *ngIf="userRole==='admin'">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let book of books">
+                    <td>{{ book.id }}</td>
+                    <td><a href="#">{{ book.title }}</a></td>
+                    <td>{{ book.author }}</td>
+                    <td>{{ book.genre }}</td>
+                    <td>
+                      <span *ngIf="!book.showDescription">{{ book.description.split(' ').slice(0, 3).join(' ') }}...</span>
+                      <span *ngIf="book.showDescription">{{ book.description }}</span>
+                      <a class="text-primary" (click)="toggleDescription(book)">{{ book.showDescription ? 'See Less' : 'See More' }}</a>
+                    </td>
+                    <td>{{ book.isbn }}</td>
+                    <td><img src="{{ book.image }}" alt="Small Image" class="img-thumbnail"></td>
+                    <td>{{ formatDate(book.published) }}</td>
+                    <td>{{ book.publisher }}</td>
+                    <td *ngIf="userRole==='admin'">
+                      <div class="d-flex">
+                        <a href="#" class="btn btn-warning">Edit</a>
+                        <a href="#" class="btn btn-danger ms-2">Delete</a>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table> 
+              <mat-paginator [length]="total" [pageSize]="per_page" [pageSizeOptions]="[5, 10, 25, 100]" (page)="fetchBooks($event.pageIndex + 1, $event.pageSize)"></mat-paginator>
+            </div>   
+          </div>
+        </div>
+      </div>
+    </div>
+<!-- </div> -->
