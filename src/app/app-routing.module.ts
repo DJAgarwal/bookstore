@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { BookListingComponent  } from './book/book-listing/book-listing.component';
 import { BookFormComponent  } from './book/book-form/book-form.component';
+import { BookViewComponent  } from './book/book-view/book-view.component';
 import { AuthGuard } from './guards/auth.guard';
 import { NotFoundComponent } from './not-found/not-found.component';
 
@@ -11,6 +12,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'book-listing', component: BookListingComponent, canActivate: [AuthGuard], data: { roles: ['admin', 'customer'] } },
   { path: 'book-form', component: BookFormComponent, canActivate: [AuthGuard], data: { roles: ['admin'] } },
+  { path: 'book-view/:id', component: BookViewComponent, canActivate: [AuthGuard], data: { roles: ['admin', 'customer'] } },
   { path: '**', component: NotFoundComponent }
 ];
 

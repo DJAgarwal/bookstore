@@ -19,7 +19,7 @@
                     <th>Description</th>
                     <th>ISBN</th>
                     <th>Image</th>
-                    <th>Publication Date(dd/mm/yyyy)</th>
+                    <th>Publication Date</th>
                     <th>Publisher</th>
                     <th *ngIf="userRole==='admin'">Action</th>
                   </tr>
@@ -27,7 +27,7 @@
                 <tbody>
                   <tr *ngFor="let book of books">
                     <td>{{ book.id }}</td>
-                    <td><a href="#">{{ book.title }}</a></td>
+                    <td><a [routerLink]="['/book-view', book.id]">{{ book.title }}</a></td>
                     <td>{{ book.author }}</td>
                     <td>{{ book.genre }}</td>
                     <td>

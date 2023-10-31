@@ -16,6 +16,7 @@ import { LoginComponent } from './login/login.component';
 import { BookListingComponent } from './book/book-listing/book-listing.component';
 import { BookFormComponent } from './book/book-form/book-form.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { BookViewComponent } from './book/book-view/book-view.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
     NotFoundComponent,
     BookListingComponent,
     BookFormComponent,
+    BookViewComponent
   ],
   imports: [
     BrowserModule,

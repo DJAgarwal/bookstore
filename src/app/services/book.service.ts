@@ -14,6 +14,10 @@ export class BookService {
 
   getBooks(page: number, perPage: number): Observable<any> {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${this.token}`);
-    return this.http.get<any>(`${this.apiUrl}/index?page=${page}&perPage=${perPage}`, { headers }); // Correct concatenation
+    return this.http.get<any>(`${this.apiUrl}/index?page=${page}&perPage=${perPage}`, { headers });
+  }
+  getBookDetails(id: string): Observable<any> {
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${this.token}`);
+    return this.http.get<any>(`${this.apiUrl}/details?id=${id}`, { headers });
   }
 }
