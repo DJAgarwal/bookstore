@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   submitted = false;
+  loading: boolean = false;
 
   constructor(
     private fb: FormBuilder,
@@ -34,6 +35,7 @@ export class LoginComponent implements OnInit {
       return;
     }
 
+    this.loading = true;
     const user = {
       email: this.loginForm.controls['email'].value,
       password: this.loginForm.controls['password'].value
@@ -45,9 +47,11 @@ export class LoginComponent implements OnInit {
         const role = response.role;
         localStorage.setItem('access_token', token);
         localStorage.setItem('user_role', role);
+        this.loading = false;
         this.router.navigate(['/book-listing']);
       },
       (error) => {
+        this.loading = false;
         if (error.status === 401) {
           this.toastr.error(error.error.message);
         } if (error.status === 422) {
