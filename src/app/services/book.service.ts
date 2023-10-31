@@ -16,8 +16,12 @@ export class BookService {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${this.token}`);
     return this.http.get<any>(`${this.apiUrl}/index?page=${page}&perPage=${perPage}`, { headers });
   }
-  getBookDetails(id: string): Observable<any> {
+  getBookDetails(id: number): Observable<any> {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${this.token}`);
-    return this.http.get<any>(`${this.apiUrl}/details?id=${id}`, { headers });
+    return this.http.get<any>(`${this.apiUrl}/${id}`, { headers });
+  }
+  deleteBook(id: number): Observable<any> {
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${this.token}`);
+    return this.http.delete<any>(`${this.apiUrl}/${id}`, { headers });
   }
 }

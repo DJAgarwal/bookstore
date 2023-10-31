@@ -29,7 +29,7 @@ export class BookViewComponent {
   formatDate(date: any): string {
     return this.datePipe.transform(date, 'dd/MM/yyyy');
   }
-  fetchBook(bookId): void {
+  fetchBook(bookId: number): void {
     this.bookService.getBookDetails(bookId).subscribe(
       (response) => {
         this.book = response.data;

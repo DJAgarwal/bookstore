@@ -42,7 +42,7 @@
                     <td *ngIf="userRole==='admin'">
                       <div class="d-flex">
                         <a href="#" class="btn btn-warning">Edit</a>
-                        <a href="#" class="btn btn-danger ms-2">Delete</a>
+                        <a (click)="confirmDelete(book.id)" class="btn btn-danger ms-2">Delete</a>
                       </div>
                     </td>
                   </tr>

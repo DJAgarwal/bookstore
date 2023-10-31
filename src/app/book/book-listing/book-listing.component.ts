@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { BookService } from '../../services/book.service';
 import { DatePipe } from '@angular/common';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-book-listing',
@@ -17,7 +18,8 @@ export class BookListingComponent {
   constructor(
     private router: Router,
     private bookService: BookService,
-    private datePipe: DatePipe
+    private toastr: ToastrService,
+    private datePipe: DatePipe,
   ) {}
 
   ngOnInit(): void {
@@ -34,6 +36,22 @@ export class BookListingComponent {
       },
       (error) => {
         console.error('Error fetching books:', error);
+      }
+    );
+  }
+  confirmDelete(bookId: number): void {
+    if (confirm('Are you sure you want to delete this book?')) {
+      this.deleteBook(bookId);
+    }
+  }
+  deleteBook(id: number): void {
+    this.bookService.deleteBook(id).subscribe(
+      () => {
+        this.toastr.success('Book deleted successfully');
+        this.fetchBooks(1, 10);
+      },
+      (error) => {
+        this.toastr.error('Error deleting book');
       }
     );
   }
