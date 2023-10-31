@@ -42,7 +42,9 @@ export class LoginComponent implements OnInit {
     this.loginService.loginUser(user).subscribe(
       (response) => {
         const token = response.token;
+        const role = response.role;
         localStorage.setItem('access_token', token);
+        localStorage.setItem('user_role', role);
         this.router.navigate(['/book-listing']);
       },
       (error) => {
