@@ -74,6 +74,17 @@ export class BookListingComponent {
     this.router.navigate(['/login']);
   }
 
+  sendDataToEmail(): void {
+    this.bookService.sendDataToEmail().subscribe(
+      (response) => {
+        this.toastr.success('All books data sent to your email using queue.');
+      },
+      (error) => {
+        console.error('Error fetching books:', error);
+      }
+    );
+  }
+
   searchBooks(): void {
       const queryParams: any = {};
       if (this.searchTitle) {

@@ -33,4 +33,8 @@ export class BookService {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${this.token}`);
     return this.http.get<any>(`${this.apiUrlSearch}search`, { headers, params: queryParams });
   }
+  sendDataToEmail(): Observable<any> {
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${this.token}`);
+    return this.http.get<any>(`${this.apiUrlSearch}send-book-email`, { headers });
+  }
 }

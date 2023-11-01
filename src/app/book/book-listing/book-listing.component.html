@@ -5,6 +5,7 @@
           <div class="card-header d-flex align-items-center">
               <h5>Books List</h5>
               <a *ngIf="userRole==='admin'"  [routerLink]="['/book-form']" class="btn btn-primary ms-2">Create Book</a>
+              <a (click)="sendDataToEmail()" class="btn btn-primary ms-2">Send data to email</a>
               <a (click)="logout()" class="btn btn-primary ms-auto">Log out</a>
           </div>
           <div class="card-body">
