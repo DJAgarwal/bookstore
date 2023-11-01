@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectorRef  } from '@angular/core';
 import { Router } from '@angular/router';
 import { BookService } from '../../services/book.service';
 import { DatePipe } from '@angular/common';
@@ -14,12 +14,17 @@ export class BookListingComponent {
   total: any;
   per_page: any;
   userRole: any;
+  searchTitle: string = '';
+  searchAuthor: string = '';
+  searchGenre: string = '';
+  searchISBN: string = '';
 
   constructor(
     private router: Router,
     private bookService: BookService,
     private toastr: ToastrService,
     private datePipe: DatePipe,
+    private changeDetectorRef: ChangeDetectorRef
   ) {}
 
   ngOnInit(): void {
@@ -67,5 +72,32 @@ export class BookListingComponent {
   logout(): void {
     localStorage.removeItem('access_token');
     this.router.navigate(['/login']);
+  }
+
+  searchBooks(): void {
+      const queryParams: any = {};
+      if (this.searchTitle) {
+        queryParams.title = this.searchTitle;
+      }
+      if (this.searchAuthor) {
+        queryParams.author = this.searchAuthor;
+      }
+      if (this.searchGenre) {
+        queryParams.genre = this.searchGenre;
+      }
+      if (this.searchISBN) {
+        queryParams.isbn = this.searchISBN;
+      }
+    this.bookService.searchBooks(queryParams).subscribe(
+      (response) => {
+        this.books = response.data.data;
+        this.total = response.data.total;
+        this.per_page = response.data.per_page;
+        this.changeDetectorRef.detectChanges();
+      },
+      (error) => {
+        console.error('Error searching books:', error);
+      }
+    );
   }
 }

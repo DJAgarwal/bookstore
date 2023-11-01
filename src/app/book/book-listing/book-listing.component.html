@@ -8,6 +8,20 @@
               <a (click)="logout()" class="btn btn-primary ms-auto">Log out</a>
           </div>
           <div class="card-body">
+            <div class="row">
+            <div class="col-md-4 mb-3">
+              <input type="text" placeholder="Search by Title" [(ngModel)]="searchTitle" (input)="searchBooks()" class="form-control">
+            </div>
+            <div class="col-md-4 mb-3">
+              <input type="text" placeholder="Search by Author" [(ngModel)]="searchAuthor" (input)="searchBooks()" class="form-control">
+            </div>
+            <div class="col-md-4 mb-3">
+              <input type="text" placeholder="Search by Genre" [(ngModel)]="searchGenre" (input)="searchBooks()" class="form-control">
+            </div>
+            <div class="col-md-4 mb-3">
+              <input type="text" placeholder="Search by ISBN" [(ngModel)]="searchISBN" (input)="searchBooks()" class="form-control">
+            </div>
+            </div>
             <div class="table-responsive">
             <table class="table table-bordered">
                 <thead>

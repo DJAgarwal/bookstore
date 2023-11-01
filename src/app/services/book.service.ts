@@ -8,6 +8,7 @@ import { environment } from '../environments/environment';
 })
 export class BookService {
   private apiUrl = `${environment.baseUrl}books`;
+  private apiUrlSearch = `${environment.baseUrl}`;
   private token = localStorage.getItem('access_token');
 
   constructor(private http: HttpClient) {}
@@ -27,5 +28,9 @@ export class BookService {
   saveBook(data: any): Observable<any> {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${this.token}`);
     return this.http.post<any>(`${this.apiUrl}`,data, { headers });
+  }
+  searchBooks(queryParams: any): Observable<any> {
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${this.token}`);
+    return this.http.get<any>(`${this.apiUrlSearch}search`, { headers, params: queryParams });
   }
 }
