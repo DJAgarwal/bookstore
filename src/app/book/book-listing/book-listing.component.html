@@ -4,7 +4,7 @@
         <div class="card">
           <div class="card-header d-flex align-items-center">
               <h5>Books List</h5>
-              <a *ngIf="userRole==='admin'" routerLink="/book-form" class="btn btn-primary ms-2">Create Book</a>
+              <a *ngIf="userRole==='admin'"  [routerLink]="['/book-form']" class="btn btn-primary ms-2">Create Book</a>
               <a (click)="logout()" class="btn btn-primary ms-auto">Log out</a>
           </div>
           <div class="card-body">
@@ -36,12 +36,12 @@
                       <a class="text-primary" (click)="toggleDescription(book)">{{ book.showDescription ? 'See Less' : 'See More' }}</a>
                     </td>
                     <td>{{ book.isbn }}</td>
-                    <td><img src="{{ book.image }}" alt="Small Image" class="img-thumbnail"></td>
+                    <td><img [src]="book.image.includes('https') ? book.image : 'http://localhost:8000'+book.image" alt="Small Image" class="img-thumbnail"></td>
                     <td>{{ formatDate(book.published) }}</td>
                     <td>{{ book.publisher }}</td>
                     <td *ngIf="userRole==='admin'">
                       <div class="d-flex">
-                        <a href="#" class="btn btn-warning">Edit</a>
+                        <a [routerLink]="['/book-form', book.id]" class="btn btn-warning">Edit</a>
                         <a (click)="confirmDelete(book.id)" class="btn btn-danger ms-2">Delete</a>
                       </div>
                     </td>

@@ -15,7 +15,7 @@
                             <div class="card mb-3">
                                 <div class="row g-0">
                                     <div class="col-md-4">
-                                        <img src="{{ book['image'] }}" class="img-fluid rounded-start" alt="Book Cover">
+                                        <img [src]="book['image'].includes('http') ? book['image'] : 'http://localhost:8000'+book['image']" alt="Book Cover" class="img-fluid rounded-start"/>
                                     </div>
                                     <div class="col-md-8">
                                         <div class="card-body">

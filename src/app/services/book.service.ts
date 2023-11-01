@@ -24,4 +24,8 @@ export class BookService {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${this.token}`);
     return this.http.delete<any>(`${this.apiUrl}/${id}`, { headers });
   }
+  saveBook(data: any): Observable<any> {
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${this.token}`);
+    return this.http.post<any>(`${this.apiUrl}`,data, { headers });
+  }
 }

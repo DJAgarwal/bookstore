@@ -12,6 +12,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'book-listing', component: BookListingComponent, canActivate: [AuthGuard], data: { roles: ['admin', 'customer'] } },
   { path: 'book-form', component: BookFormComponent, canActivate: [AuthGuard], data: { roles: ['admin'] } },
+  { path: 'book-form/:id', component: BookFormComponent, canActivate: [AuthGuard], data: { roles: ['admin'] } },
   { path: 'book-view/:id', component: BookViewComponent, canActivate: [AuthGuard], data: { roles: ['admin', 'customer'] } },
   { path: '**', component: NotFoundComponent }
 ];

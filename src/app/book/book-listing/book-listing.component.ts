@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { BookService } from '../../services/book.service';
 import { DatePipe } from '@angular/common';
 import { ToastrService } from 'ngx-toastr';
-
+import { MatPaginatorModule } from '@angular/material/paginator';
 @Component({
   selector: 'app-book-listing',
   templateUrl: './book-listing.component.html',

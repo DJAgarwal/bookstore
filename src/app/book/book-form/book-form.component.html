@@ -1,0 +1,98 @@
+<!-- <div class="mt-5"> -->
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+          <div class="card">
+            <div class="card-header d-flex align-items-center">
+                <h5>Books {{title}}</h5>
+                <div class=" ms-auto">
+                    <a routerLink="/book-listing" class="btn btn-primary">Back</a>
+                    <a (click)="logout()" class="btn btn-primary ms-2">Log out</a>
+                </div>
+            </div>
+            <div class="card-body">
+                <form [formGroup]="bookForm" (ngSubmit)="onSubmit()">
+                    <div class="row">
+                    <input type="hidden" formControlName="id" />
+                    <div class="col-md-6 mb-3">
+                      <label for="title" class="form-label">Title</label>
+                      <input type="text" class="form-control" id="title" placeholder="Enter Title" formControlName="title" />
+                      <div *ngIf="submitted && bookForm.controls['title'].errors" class="text-danger">
+                        <div *ngFor="let error of bookForm.controls['title'].errors | keyvalue">
+                          <div *ngIf="error.key === 'required'">Title is required</div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                      <label for="author" class="form-label">Author</label>
+                      <input type="text" class="form-control" id="author" placeholder="Enter Author" formControlName="author" />
+                      <div *ngIf="submitted && bookForm.controls['author'].errors" class="text-danger">
+                        <div *ngFor="let error of bookForm.controls['author'].errors | keyvalue">
+                          <div *ngIf="error.key === 'required'">Author is required</div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="genre" class="form-label">Genre</label>
+                        <input type="text" class="form-control" id="genre" placeholder="Enter Genre" formControlName="genre" />
+                        <div *ngIf="submitted && bookForm.controls['genre'].errors" class="text-danger">
+                          <div *ngFor="let error of bookForm.controls['genre'].errors | keyvalue">
+                            <div *ngIf="error.key === 'required'">Genre is required</div>
+                          </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="isbn" class="form-label">ISBN</label>
+                        <input type="text" class="form-control" id="isbn" placeholder="Enter ISBN" formControlName="isbn" />
+                        <div *ngIf="submitted && bookForm.controls['isbn'].errors" class="text-danger">
+                          <div *ngFor="let error of bookForm.controls['isbn'].errors | keyvalue">
+                            <div *ngIf="error.key === 'required'">ISBN is required</div>
+                          </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 mb-3">
+                        <label for="description" class="form-label">Description</label>
+                        <input type="text" class="form-control" id="description" placeholder="Enter Description" formControlName="description" />
+                        <div *ngIf="submitted && bookForm.controls['description'].errors" class="text-danger">
+                          <div *ngFor="let error of bookForm.controls['description'].errors | keyvalue">
+                            <div *ngIf="error.key === 'required'">Description is required</div>
+                          </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="image" class="form-label">Image</label>
+                        <input type="file" (change)="onFileSelected($event)" class="form-control" id="image" accept="image/*" />
+                        <div *ngIf="submitted && bookForm.controls['image'].errors" class="text-danger">
+                          <div *ngFor="let error of bookForm.controls['image'].errors | keyvalue">
+                            <div *ngIf="error.key === 'required'">Image is required</div>
+                          </div>
+                        </div>
+                        <img [src]="currentImage.includes('http') ? currentImage : 'http://localhost:8000'+currentImage" height="50" width="50" alt="Current Image" class="img-thumbnail" *ngIf="currentImage" />
+                    </div>                      
+                    <div class="col-md-6 mb-3">
+                        <label for="published" class="form-label">Publication Date</label>
+                        <input type="date" class="form-control" id="published" placeholder="Enter Publication Date" formControlName="published" />
+                        <div *ngIf="submitted && bookForm.controls['published'].errors" class="text-danger">
+                          <div *ngFor="let error of bookForm.controls['published'].errors | keyvalue">
+                            <div *ngIf="error.key === 'required'">Publication Date is required</div>
+                          </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="publisher" class="form-label">Publisher</label>
+                        <input type="text" class="form-control" id="publisher" placeholder="Enter Publisher" formControlName="publisher" />
+                        <div *ngIf="submitted && bookForm.controls['publisher'].errors" class="text-danger">
+                          <div *ngFor="let error of bookForm.controls['publisher'].errors | keyvalue">
+                            <div *ngIf="error.key === 'required'">Publisher is required</div>
+                          </div>
+                        </div>
+                    </div>
+                    </div>
+                    <div>
+                      <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                  </form>  
+            </div>
+          </div>
+        </div>
+      </div>
+  <!-- </div> -->
