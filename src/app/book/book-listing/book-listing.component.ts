@@ -18,6 +18,7 @@ export class BookListingComponent {
   searchAuthor: string = '';
   searchGenre: string = '';
   searchISBN: string = '';
+  loading: boolean = false;
 
   constructor(
     private router: Router,
@@ -75,11 +76,14 @@ export class BookListingComponent {
   }
 
   sendDataToEmail(): void {
+    this.loading=true;
     this.bookService.sendDataToEmail().subscribe(
       (response) => {
         this.toastr.success('All books data sent to your email using queue.');
+        this.loading=false;
       },
       (error) => {
+        this.loading=false;
         console.error('Error fetching books:', error);
       }
     );
