@@ -12,6 +12,6 @@ password:customer@123
 email:customer2@gmail.com
 password:customer@123
 
-6. I have added create, edit, delete functionality. Also Send email functionality to demonstrate laravel queue functionality
+6. I have added create, edit, view and delete functionality. Also Send email functionality to demonstrate laravel queue functionality
 
 Let me know if you face any issues: dheerajagarwal1995@gmail.com
